@@ -8,8 +8,6 @@
    
     <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
-
-    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
  
     
@@ -62,7 +60,53 @@
         
         <div data-role="content" data-theme='a'>
             <h2>Add Exercise</h2>>
-            
+            <table id="input">
+                <tr>
+                    <td>
+                      <label for="dateDone">Date of Exercise</label>
+                    </td>
+                    <td>
+                      <input type="date" id="dateDone" name="dateDone">
+                    </td>
+                  </tr>
+                <tr>
+                  <td>
+                    <label for="exercise">Exercise</label>
+                  </td>
+                  <td>
+                    <select id="exercise" name="exercise">
+                        <option value="sld">Single Leg Deadlift</option>
+                        <option value="calves">Calf Raises</option>
+                        <option value="kneetap">Plank w/ Knee Tap</option>
+                        <option value="hlr">Hamstring Lever Release</option>
+                        <option value="kneetap">Plank w/ Knee Tap</option>
+                        <option value="march">Step March</option>
+                      </select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label for="reps">Total Repetitions</label>
+                  </td>
+                  <td>
+                    <input type="number" id="reps" name="reps">
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label for="confidence">Rating (1-5, 5 is very confident)</label>
+                  </td>
+                  <td>
+                    <input type="range" id="confidence" name="confidence" min="1" max="5" step="1">
+                  </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" id="submit" value="Submit">
+                    </td>
+                </tr>
+                
+              </table>
 
         </div>
 
@@ -87,7 +131,7 @@
         
         <div data-role="content" data-theme='a'>
             <h2>Home</h2>>
-            <img src="./images/calc.png" alt="picture of a caclculator">
+            
 
         </div>
 
