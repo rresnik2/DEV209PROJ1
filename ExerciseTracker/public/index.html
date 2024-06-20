@@ -6,10 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
    
-    <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+    <link rel="stylesheet" href="stylesheets/themes/jquery.mobile.icons.min.css" />
     
     <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
-    <script scr="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <link rel="stylesheet" href="stylesheets/themes/mushroomSunrise.css" />
+
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
  
     
@@ -36,8 +39,8 @@
         </div>  
         
         <div data-role="content" data-theme='a'>
-            <h2>Home</h2>>
-            
+            <h2>Home</h2>
+            <p>A tracker of exercises.</p>
 
         </div>
 
@@ -54,14 +57,14 @@
         
             <div data-role="navbar">
                 <ul>
+                <li><a href="#home" data-transition="flip">Home</a></li>
                 <li><a href="#show" data-transition="flip">Show Progress</a></li>
                 <li><a href="#example" data-transition="flip">Show Examples</a></li>
                 </ul>
             </div>
         </div>  
         
-        <div data-role="content" data-theme='a'>
-            <h2>Add Exercise</h2>>
+        <div id="chartDiv" data-role="content" data-theme='a'>
             <table id="input">
                 <tr>
                     <td>
@@ -81,7 +84,7 @@
                         <option value="calves">Calf Raises</option>
                         <option value="kneetap">Plank w/ Knee Tap</option>
                         <option value="hlr">Hamstring Lever Release</option>
-                        <option value="kneetap">Plank w/ Knee Tap</option>
+                        <option value="atw">Around the World</option>
                         <option value="march">Step March</option>
                       </select>
                   </td>
@@ -107,8 +110,9 @@
                         <input type="submit" id="submit" value="Submit">
                     </td>
                 </tr>
-                
+
               </table>
+            
 
         </div>
 
@@ -125,13 +129,14 @@
         
             <div data-role="navbar">
                 <ul>
+                <li><a href="#home" data-transition="flip">Home</a></li>
                 <li><a href="#add" data-transition="flip">Add Exercise</a></li>
                 <li><a href="#example" data-transition="flip">Show Examples</a></li>
                 </ul>
             </div>
         </div>  
         
-        <div data-role="content" data-theme='a'>
+        <div id="chartDiv" data-role="content" data-theme='a' class="block center">
           <div id="chartContainer"></div>
 
         </div>
@@ -149,6 +154,7 @@
         
             <div data-role="navbar">
                 <ul>
+                <li><a href="#home" data-transition="flip">Home</a></li>
                 <li><a href="#add" data-transition="flip">Add Exercise</a></li>
                 <li><a href="#show" data-transition="flip">Show Progress</a></li>
                 </ul>
@@ -156,9 +162,16 @@
         </div>  
         
         <div data-role="content" data-theme='a'>
-            <h2>Home</h2>>
-            <img src="./images/calc.png" alt="picture of a caclculator">
-
+            <h3> Average Confidence and Addtional Training</h3>
+            <table id="tableID">
+              <tr><th>Exercise</th><th>Average Confidence</th><th>Additional Guidance</th></tr>
+              <tr><td>Single Lead Deadlift</td><td id="avdsld"></td><td></td></tr>
+              <tr><td>March Step</td><td id="avdms"></td><td></td></tr>
+              <tr><td>Plank W/ Kneetap</td><td id="avdpk"></td><td></td></tr>
+              <tr><td>Hamstring Lever Release</td><td id="avdhlr"></td><td></td></tr>
+              <tr><td>Calf Raises</td><td id="avdcr"></td><td></td></tr>
+              <tr><td>Around the World</td><td id="avdatw"></td><td></td></tr>
+            </table>
         </div>
 
           <div data-role="footer" data-theme='a'>
@@ -166,7 +179,7 @@
         </div>
 
     </div>
-    <script language="JavaScript" type="text/javascript" src="main.js"></script>
-    <script language="JavaScript" type="text/javascript" src="exercise.js"></script>
+    <script src="javascripts/main.js"></script>
+    <script src="javascripts/jquery.canvasjs.min.js"></script>
 </body>
 </html>

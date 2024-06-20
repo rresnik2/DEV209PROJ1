@@ -1,15 +1,25 @@
 var express = require('express');
 var router = express.Router();
 
+var serverList = [];
+console.log(serverList);
+var exercise = function (date, move, reps, confid) {
+  this.date = date;
+  this.move = move;
+  this.reps = reps;
+  this.confid = confid;
+  this.ID = Math.random().toString(16).slice(5);
+}
+
 var fs = require("fs");
 let fileManager = {
   read: function () {
     var rawdata = fs.readFileSync('objectdata.json');
     let goodData = JSON.parse(rawdata);
-    serverArray = goodData;
+    serverList = goodData;
   },
   write: function () {
-    let data = JSON.stringify(serverArray);
+    let data = JSON.stringify(serverList);
     fs.writeFileSync('objectdata.json', data);
   },
   validData: function () {
@@ -24,27 +34,23 @@ let fileManager = {
   }
 };
 
-if (!fileManager.validData()) {
-  ServerArray.push(new MovieObject("MoonstruckXXX", 1981, "Drama",
-    "Nicholas Cage", "Cher", "https://www.youtube.com/watch?v=M01_2CKL6PU"));
-  ServerArray.push(new MovieObject("Wild At Heart", 1982, "Drama",
-    "Nicholas Cage", "Laura VanDern",
-    "https://www.youtube.com/watch?v=7uRJartX79Q"));
-  ServerArray.push(new MovieObject("Raising Arizona", 1983, "Comedy",
-    "Nicholas Cage", "Holly Hunter",
-    "https://www.youtube.com/watch?v=NoXJKArYi1g"));
-  ServerArray.push(new MovieObject("USS Indianapolis: Men of Courage",
-    2016, "Drama", "Nicholas Cage", "Emily Tennant", "https://youtu.be/ZDPE-NronKk"));
-fileManager.write();
-}
-else {
-  fileManager.read(); // do have prior movies so load up the array
-}
+router.get('/', function (req, res, next) {
+  res.render('index', {title : 'Exercise Tracker'});
+});
+
+router.get('/getData', function(req, res){
+  fileManager.read();
+  res.status(200).json(serverList);
+});
+
+router.post('/addExercise', function(req, res){
+  const newExercise = req.body;
+  serverList.push(newExercise);
+  fileManager.write();
+  res.status(200).json(newExercise);
+});
 
 
-  /* GET home page. */
-  router.get('/', function (req, res, next) {
-    res.render('index', { title: 'Express' });
-  });
 
-  module.exports = router;
+
+module.exports = router;
