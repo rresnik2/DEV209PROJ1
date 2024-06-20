@@ -1,7 +1,13 @@
 
 let sortedExercise = [[], [], [], [], [], []];
 let avgConfid = [];
-
+let sldUrl = "https://www.youtube.com/watch?v=tZfxXdilG_M";
+let crUrl = "https://www.youtube.com/watch?v=c5Kv6-fnTj8";
+let pkUrl = "https://www.youtube.com/watch?v=YBVJJQijlYw"
+let hlrUrl = "https://www.youtube.com/watch?v=Q3MJAkLsaV4";
+let atwUrl = "https://www.youtube.com/watch?v=cJ27Zu_3_i0";
+let msUrl = "https://www.youtube.com/watch?v=WEbdsSD_5A4";
+let urlList = [sldUrl, crUrl, pkUrl, hlrUrl,  atwUrl, msUrl ];
 let exercise = function (date, move, reps, confid) {
   this.date = date;
   this.move = move;
@@ -11,6 +17,32 @@ let exercise = function (date, move, reps, confid) {
 }
 
 
+let tableButtons = function(){
+  let table = document.getElementById("tableID");
+  let rows = table.getElementsByTagName("tr");
+  for (let i = 0; i < rows.length; i++){
+    let currentRow = table.rows[i];
+    let createClickHandler = function(row){
+      return function() {
+          let cell = row.getElementsByTagName("td")[0];
+          let whichID = cell.innerHTML;
+          console.log(cell.innerHTML);
+          for (let i = 1; i < 7; i++){
+            console.log("in url")
+            
+            if (cell.innerHTML == i){
+            
+              window.open(urlList[i - 1]);
+              
+            }
+          }
+          }
+      }
+    currentRow.onclick = createClickHandler(currentRow);
+    }
+  }
+
+
 document.addEventListener("DOMContentLoaded", function (event) {
   $(document).on("pagebeforeshow", "#show", function (event) {
 
@@ -18,6 +50,13 @@ document.addEventListener("DOMContentLoaded", function (event) {
     //Render Chart
 
 
+  });
+
+  document.getElementById("clearButton").addEventListener("click", function(){
+    console.log('clearClicked');
+    document.getElementById("confidence").value = "";
+    document.getElementById("reps").value = "";
+    document.getElementById("dateDone").value = "";
   });
 
   document.getElementById("submit").addEventListener("click", function () {
@@ -108,14 +147,15 @@ function sortDataForAnal(exerciseList) {
   }
 }
 function avg(list, move) {
-  console.log(list[0], move);
+
   let temp = 0;
   if (list[move].length < 1) {
     return temp;
   }
   else {
     for (let i = 0; i < list[move].length; i++) {
-      temp += list[move][i];
+      temp += parseInt(list[move][i]);
+      console.log(temp);
     }
     return temp / list[move].length;
   }
@@ -200,21 +240,22 @@ function createChart() {
       }
       ]
     });
+    tableButtons();
     if (exerciseList.length !== 0) {
       sortDataForChart(exerciseList, chart);
       sortDataForAnal(exerciseList);
       console.log(chart);
       chart.render();
       for (let i = 0; i < 6; i++) {
-        avgConfid[i] = avg(sortedExercise, i);
+        avgConfid[i] = Math.round(avg(sortedExercise, i), 5);
         
       }
-      document.getElementById('avdsld') = avgConfid[0];
-      document.getElementById('avdcr') = avgConfid[1];
-      document.getElementById('avdpk') = avgConfid[2];
-      document.getElementById('avdhlr') = avgConfid[3];
-      document.getElementById('avdatw') = avgConfid[4];
-      document.getElementById('avdms') = avgConfid[5];
+      document.getElementById('avdsld').innerHTML = avgConfid[0];
+      document.getElementById('avdcr').innerHTML = avgConfid[1];
+      document.getElementById('avdpk').innerHTML = avgConfid[2];
+      document.getElementById('avdhlr').innerHTML = avgConfid[3];
+      document.getElementById('avdatw').innerHTML = avgConfid[4];
+      document.getElementById('avdms').innerHTML = avgConfid[5];
 
 
 
